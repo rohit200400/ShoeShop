@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stride Local | Footwear Shop</title>
+  <meta
+    name="description"
+    content="Browse everyday footwear, add your favorites to cart, and continue to checkout with a static-site friendly storefront."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div>
+          <p class="eyebrow">Local Footwear Shop</p>
+          <a class="brand" href="#home">Stride Local</a>
+        </div>
+        <div class="nav-actions">
+          <a href="#catalog">Browse</a>
+          <a href="#checkout">Checkout</a>
+          <button class="cart-button" id="cart-button" type="button" aria-label="Open cart">
+            Cart <span id="cart-count">0</span>
+          </button>
+        </div>
+      </nav>
+
+      <section class="hero-content" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Comfort. Street. Everyday wear.</p>
+          <h1>Simple storefront for a neighborhood footwear brand.</h1>
+          <p class="hero-text">
+            Explore popular shoes, keep selections in your cart, and move to a hosted payment step when you're ready.
+          </p>
+          <div class="hero-cta">
+            <a class="primary-link" href="#catalog">Shop Footwear</a>
+            <a class="secondary-link" href="#checkout">View Checkout</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="spotlight-card">
+            <p class="spotlight-label">This Week</p>
+            <h2>WalkLite Runner</h2>
+            <p>Featherweight cushioning for all-day wear.</p>
+            <div class="spotlight-meta">
+              <span>Top Seller</span>
+              <span>$68</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="section-heading" id="catalog">
+        <div>
+          <p class="eyebrow">Catalog</p>
+          <h2>Browse footwear by style</h2>
+        </div>
+        <label class="filter-shell" for="category-filter">
+          <span>Category</span>
+          <select id="category-filter">
+            <option value="all">All</option>
+            <option value="running">Running</option>
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+            <option value="sandals">Sandals</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="product-grid" id="product-grid" aria-live="polite"></section>
+
+      <section class="checkout-layout" id="checkout">
+        <article class="checkout-panel">
+          <p class="eyebrow">Checkout</p>
+          <h2>Customer details</h2>
+          <form id="checkout-form" class="checkout-form">
+            <label>
+              Full name
+              <input id="customer-name" name="customerName" type="text" placeholder="Asha Patel" required />
+            </label>
+            <label>
+              Email address
+              <input id="customer-email" name="customerEmail" type="email" placeholder="asha@example.com" required />
+            </label>
+            <label>
+              Phone number
+              <input id="customer-phone" name="customerPhone" type="tel" placeholder="+1 555 0142" required />
+            </label>
+            <label>
+              Delivery method
+              <select id="delivery-method" name="deliveryMethod">
+                <option value="pickup">Store pickup</option>
+                <option value="delivery">Local delivery</option>
+              </select>
+            </label>
+            <label>
+              Notes
+              <textarea id="order-notes" name="orderNotes" rows="4" placeholder="Size preference, delivery instructions, or color choice"></textarea>
+            </label>
+            <button class="primary-button" type="submit">Continue to Payment</button>
+          </form>
+          <p class="checkout-note" id="checkout-note">
+            Payment is configured as a placeholder for now. Add your hosted checkout link in the script settings when you're ready.
+          </p>
+        </article>
+
+        <aside class="summary-panel">
+          <p class="eyebrow">Order summary</p>
+          <h2>Your cart</h2>
+          <div id="summary-items" class="summary-items"></div>
+          <dl class="summary-totals">
+            <div>
+              <dt>Items</dt>
+              <dd id="summary-count">0</dd>
+            </div>
+            <div>
+              <dt>Subtotal</dt>
+              <dd id="summary-subtotal">$0</dd>
+            </div>
+            <div>
+              <dt>Estimated shipping</dt>
+              <dd id="summary-shipping">$0</dd>
+            </div>
+            <div class="grand-total">
+              <dt>Total</dt>
+              <dd id="summary-total">$0</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-header">
+      <div>
+        <p class="eyebrow">Cart</p>
+        <h2>Selected footwear</h2>
+      </div>
+      <button id="close-cart" class="ghost-button" type="button">Close</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div>
+        <p class="eyebrow">Current total</p>
+        <p class="cart-total" id="drawer-total">$0</p>
+      </div>
+      <a class="primary-link wide-link" href="#checkout">Go to checkout</a>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
