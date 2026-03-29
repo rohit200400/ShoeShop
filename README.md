@@ -2,6 +2,8 @@
 
 Simple static storefront for a local footwear shop.
 
+The catalog is now data-driven from an Excel workbook in the repository.
+
 ## What this includes
 
 - Product browsing by category
@@ -9,6 +11,47 @@ Simple static storefront for a local footwear shop.
 - Cart persistence with local storage
 - Checkout form for customer details
 - Payment handoff placeholder for static hosting
+- Product data loaded from Excel (`products.xlsx`)
+
+## Excel-driven catalog
+
+1. Add a file named `products.xlsx` in the project root.
+2. Use a sheet named `Products` (or keep any single first sheet).
+3. Add these columns in row 1:
+
+- `name`
+- `category`
+- `price`
+- `image`
+- `tagline` (optional)
+- `sizes` (optional, comma-separated like `6,7,8,9`)
+- `id` (optional)
+
+### Example rows
+
+| name | category | price | image | tagline | sizes | id |
+| --- | --- | ---: | --- | --- | --- | --- |
+| WalkLite Runner | running | 68 | https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80 | Daily training shoe with soft rebound foam. | 6,7,8,9,10 | walklite-runner |
+| Harbor Slip-On | casual | 52 | https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80 | Easy canvas comfort for quick city errands. | 6,7,8,9 | harbor-slipon |
+
+If `id` is missing, one is generated automatically.
+If `sizes` is missing, default sizes are used.
+
+## Run locally (important)
+
+Do not open `index.html` directly with `file://` in the browser. Browser security blocks JavaScript from loading `products.xlsx` in that mode.
+
+Start a local server from this folder, then open the printed localhost URL:
+
+```bash
+python -m http.server 5500
+```
+
+Then browse to:
+
+```text
+http://localhost:5500
+```
 
 ## Why this works on GitHub Pages
 
@@ -31,9 +74,9 @@ Examples:
 const storefront = {
   paymentUrl: "https://your-payment-link-here",
   shippingFlatRate: 8,
-  products: [
-    // ...
-  ],
+  dataFile: "./products.xlsx",
+  sheetName: "Products",
+  products: [],
 };
 ```
 
